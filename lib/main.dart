@@ -256,6 +256,19 @@ class _OrderScreenState extends State<OrderScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          // Placeholder for now - you can add BottomSheet here later
+          debugPrint('Cart tapped: ${_cart.itemCount} items, Total: \$${_cart.calculateTotalPrice()}');
+        },
+        icon: Badge(
+          label: Text('${_cart.itemCount}'),
+          isLabelVisible: _cart.itemCount > 0,
+          child: const Icon(Icons.shopping_cart),
+        ),
+        label: Text('\$${_cart.calculateTotalPrice()}'),
+        backgroundColor: Colors.orange,
+      ),
     );
   }
 }
