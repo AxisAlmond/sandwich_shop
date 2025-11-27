@@ -106,6 +106,10 @@ class _OrderScreenState extends State<OrderScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: SizedBox(
+          height: 100,
+          child: Image.asset('assets/images/logo.png'),
+        ),
         title: const Text(
           'Sandwich Counter',
           style: heading1,
@@ -124,7 +128,8 @@ class _OrderScreenState extends State<OrderScreen> {
             const SizedBox(height: 12),
             Builder(
               builder: (context) {
-                final int totalPrice = PricingRepository().calculate(_orderRepository.quantity, _isFootlong);
+                final int totalPrice = PricingRepository()
+                    .calculate(_orderRepository.quantity, _isFootlong);
                 return Text('Total: \$$totalPrice', style: normalText);
               },
             ),
@@ -133,11 +138,10 @@ class _OrderScreenState extends State<OrderScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text('six-inch', style: normalText),
-                Switch( 
-                  value: _isFootlong,
-                  onChanged: _onSandwichTypeChanged,
-                  key: const ValueKey('Length')
-                ),
+                Switch(
+                    value: _isFootlong,
+                    onChanged: _onSandwichTypeChanged,
+                    key: const ValueKey('Length')),
                 const Text('footlong', style: normalText),
               ],
             ),
@@ -150,7 +154,8 @@ class _OrderScreenState extends State<OrderScreen> {
                   onChanged: (value) {
                     setState(() => _isToasted = value);
                     // ignore: unused_label
-                    key: const ValueKey('Toasted');
+                    key:
+                    const ValueKey('Toasted');
                   },
                 ),
                 const Text('toasted', style: normalText),
