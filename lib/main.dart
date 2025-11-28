@@ -77,6 +77,24 @@ class _OrderScreenState extends State<OrderScreen> {
           'Added $_quantity $sizeText ${sandwich.name} sandwich(es) on ${_selectedBreadType.name} bread to cart';
 
       debugPrint(confirmationMessage);
+
+      // Show SnackBar message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(confirmationMessage),
+          duration: const Duration(seconds: 2),
+          backgroundColor: Colors.green,
+          behavior: SnackBarBehavior.floating,
+          action: SnackBarAction(
+            label: 'VIEW CART',
+            textColor: Colors.white,
+            onPressed: () {
+              debugPrint(
+                  'View cart tapped - Cart has ${_cart.itemCount} items');
+            },
+          ),
+        ),
+      );
     }
   }
 
@@ -259,7 +277,8 @@ class _OrderScreenState extends State<OrderScreen> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           // Placeholder for now - you can add BottomSheet here later
-          debugPrint('Cart tapped: ${_cart.itemCount} items, Total: \$${_cart.calculateTotalPrice()}');
+          debugPrint(
+              'Cart tapped: ${_cart.itemCount} items, Total: \$${_cart.calculateTotalPrice()}');
         },
         icon: Badge(
           label: Text('${_cart.itemCount}'),
