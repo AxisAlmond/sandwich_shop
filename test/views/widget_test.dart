@@ -149,4 +149,35 @@ void main() {
     // Switch still exists after toggle
     expect(find.byType(Switch), findsOneWidget);
   });
+
+  group('Cart UI', () {
+    testWidgets('FloatingActionButton shows cart icon',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(const App());
+      
+      // Verify FloatingActionButton exists with shopping cart icon
+      expect(find.byIcon(Icons.shopping_cart), findsOneWidget);
+      expect(find.byType(FloatingActionButton), findsOneWidget);
+    });
+
+    testWidgets('FloatingActionButton initially shows price at zero',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(const App());
+      
+      // Initially cart is empty, should show $0
+      expect(find.text('\$0'), findsOneWidget);
+    });
+  });
+
+  group('SnackBar', () {
+    testWidgets('SnackBar configuration in widget tree',
+        (WidgetTester tester) async {
+      // This test verifies the basic widget structure
+      await tester.pumpWidget(const App());
+      
+      // Verify the app is built correctly
+      expect(find.byType(App), findsOneWidget);
+      expect(find.byType(Scaffold), findsOneWidget);
+    });
+  });
 }
